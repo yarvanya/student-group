@@ -2,7 +2,8 @@ const app = angular.module('myApp', []);
 
 app.controller("groupController", function($rootScope, $scope) {
 
-  $scope.groups = [
+  if (!localStorage.groups) {
+    $scope.groups = [
       {
         name: "КТ-5",
         students: [
@@ -19,7 +20,11 @@ app.controller("groupController", function($rootScope, $scope) {
           {fullName: "Roma Chychkevych", email: "roma@gmail.com", age: 22}
         ]
       }
-  ];
+    ];
+    localStorage.setItem("groups", JSON.stringify($scope.groups));
+  } else {
+    $scope.groups = JSON.parse(localStorage.groups);
+  }
 
   $scope.newStudent = {};
   $scope.newGroup = {};
@@ -30,12 +35,14 @@ app.controller("groupController", function($rootScope, $scope) {
     const assignGroup = Object.assign({}, $scope.newGroup, {students: []});
     $scope.groups.push(assignGroup);
     $scope.messageFromGroup = "You've just successyfly created new group!";
+    localStorage.groups = JSON.stringify($scope.groups);
   };
 
   $scope.createStudent = function(group) {
       group.students.push($scope.newStudent);
       $scope.messageFromStudent = "You've just successyfly created new student!";
       $scope.newStudent = {};
+      localStorage.groups = JSON.stringify($scope.groups);
   };
 
   $scope.clearMessage = function() {
@@ -50,6 +57,7 @@ app.controller("groupController", function($rootScope, $scope) {
   $scope.deleteStudent = function(group) {
     group.students.splice(group.students.indexOf($scope.clickedStudent), 1);
     $scope.message = "Student was deleted successfully!";
+    localStorage.groups = JSON.stringify($scope.groups);
   };
 
 });
