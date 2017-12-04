@@ -14,8 +14,65 @@
   </form>
   <ng-include src="'app/modals/createGroupModal.html'"></ng-include>
 
+</div>
+
+<div class="col-sm-8">
+
+  <h2>All students</h2>
+  <span class="clearfix"></span>
+  <div class="alert alert-success fade in" ng-if="messageFromStudent">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="clearMessage()">&times;</a>
+    <strong>Success!</strong> {{messageFromStudent}}
+  </div>
+  <hr/>
+  <table class="table table-striped" ng-if="group">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Fullname</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="student in group.students">
+        <td>{{$index+1}}</td>
+        <td>{{student.fullName}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.age}}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#myModalEdit"
+            ng-click="selectStudent(student)"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-toggle="modal"
+            data-target="#myModalDelete"
+            ng-click="selectStudent(student)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div class="jumbotron text-center" ng-if="!group">
     You have not selected any group yet! Please, select one!
   </div>
+
+  <ng-include src="'app/modals/createStudentModal.html'" ng-if="group"></ng-include>
+  <ng-include src="'app/modals/editStudentModal.html'"></ng-include>
+  <ng-include src="'app/modals/deleteStudentModal.html'"></ng-include>
 
 </div>
