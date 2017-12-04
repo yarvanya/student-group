@@ -1,6 +1,6 @@
 const app = angular.module('myApp', []);
 
-app.controller("studentController", function($rootScope, $scope) {
+app.controller("groupController", function($rootScope, $scope) {
 
   $scope.groups = [
       {
