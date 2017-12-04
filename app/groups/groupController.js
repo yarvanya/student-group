@@ -29,12 +29,12 @@ app.controller("groupController", function($rootScope, $scope) {
   $scope.createGroup = function() {
     const assignGroup = Object.assign({}, $scope.newGroup, {students: []});
     $scope.groups.push(assignGroup);
-    $scope.messageFromGroup = "You have just successyfly created new group!";
+    $scope.messageFromGroup = "You've just successyfly created new group!";
   };
 
   $scope.createStudent = function(group) {
       group.students.push($scope.newStudent);
-      $scope.messageFromStudent = "You have just successyfly created new student!";
+      $scope.messageFromStudent = "You've just successyfly created new student!";
       $scope.newStudent = {};
   };
 
@@ -45,6 +45,11 @@ app.controller("groupController", function($rootScope, $scope) {
 
   $scope.selectStudent = function(student){
     $scope.clickedStudent = student;
+  };
+
+  $scope.deleteStudent = function(){
+    $scope.students.splice($scope.students.indexOf($scope.clickedStudent), 1);
+    $scope.message = "Student was deleted successfully!";
   };
 
 });
