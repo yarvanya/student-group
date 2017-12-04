@@ -43,4 +43,8 @@ app.controller("studentController", function($rootScope, $scope) {
     $scope.messageFromGroup = '';
   };
 
+  $scope.selectStudent = function(student){
+    $scope.clickedStudent = student;
+  };
+
 });
