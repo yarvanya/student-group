@@ -1,6 +1,6 @@
 const app = angular.module('myApp', []);
 
-app.controller("groupController", function($rootScope, $scope) {
+app.controller("studentController", function($rootScope, $scope) {
 
   $scope.groups = [
       {
@@ -21,7 +21,9 @@ app.controller("groupController", function($rootScope, $scope) {
       }
   ];
 
+  $scope.newStudent = {};
   $scope.newGroup = {};
+  $scope.messageFromStudent = '';
   $scope.messageFromGroup = '';
 
   $scope.createGroup = function() {
@@ -30,8 +32,14 @@ app.controller("groupController", function($rootScope, $scope) {
     $scope.messageFromGroup = "You have just successyfly created new group!";
   };
 
+  $scope.createStudent = function(group) {
+      group.students.push($scope.newStudent);
+      $scope.messageFromStudent = "You have just successyfly created new student!";
+      $scope.newStudent = {};
+  };
 
   $scope.clearMessage = function() {
+    $scope.messageFromStudent = '';
     $scope.messageFromGroup = '';
   };
 
