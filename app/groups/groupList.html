@@ -1,0 +1,21 @@
+<div class="col-sm-4">
+  
+  <div class="alert alert-success fade in" ng-if="messageFromGroup">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="clearMessage()">&times;</a>
+    <strong>Success!</strong> {{messageFromGroup}}
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="group">Select group:</label>
+      <select class="form-control" id="group" ng-model="group" ng-options="group.name for group in groups">
+        <option>{{group.name}}</option>
+      </select>
+    </div>
+  </form>
+  <ng-include src="'app/modals/createGroupModal.html'"></ng-include>
+
+  <div class="jumbotron text-center" ng-if="!group">
+    You have not selected any group yet! Please, select one!
+  </div>
+
+</div>
