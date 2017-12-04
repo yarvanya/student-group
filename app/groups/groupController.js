@@ -43,12 +43,12 @@ app.controller("groupController", function($rootScope, $scope) {
     $scope.messageFromGroup = '';
   };
 
-  $scope.selectStudent = function(student){
+  $scope.selectStudent = function(student) {
     $scope.clickedStudent = student;
   };
 
-  $scope.deleteStudent = function(){
-    $scope.students.splice($scope.students.indexOf($scope.clickedStudent), 1);
+  $scope.deleteStudent = function(group) {
+    group.students.splice(group.students.indexOf($scope.clickedStudent), 1);
     $scope.message = "Student was deleted successfully!";
   };
 
